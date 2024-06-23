@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>This or That</title>
+    <link rel="shortcut icon" href="#" type="image/x-icon" />
+    <link rel="stylesheet" href="./style.css" />
+    <script type="module" src="./main.js"></script>
+  </head>
+  <body>
+    <main>
+      <h1>This or That</h1>
+      <!--  -->
+      <div id="quiz" class="quiz">
+        <div class="quiz__info">
+          <span class="quiz__order">1/5</span>
+        </div>
+        <!--  -->
+        <div class="question">
+          <div class="question__answers">
+            <button class="question__answer" data-value="bad">bad</button>
+            <button class="question__answer" data-value="bed">bed</button>
+          </div>
+          <button class="question__audio">Listen</button>
+        </div>
+        <!--  -->
+        <div class="question" hidden>
+          <div class="question__answers">
+            <button class="question__answer" data-value="man">man</button>
+            <button class="question__answer" data-value="men">men</button>
+          </div>
+          <button class="question__audio">Listen</button>
+        </div>
+        <!--  -->
+        <div class="question" hidden>
+          <div class="question__answers">
+            <button class="question__answer" data-value="and">and</button>
+            <button class="question__answer" data-value="end">end</button>
+          </div>
+          <button class="question__audio">Listen</button>
+        </div>
+        <!--  -->
+        <div class="question" hidden>
+          <div class="question__answers">
+            <button class="question__answer" data-value="pan">pan</button>
+            <button class="question__answer" data-value="pen">pen</button>
+          </div>
+          <button class="question__audio">Listen</button>
+        </div>
+        <!--  -->
+        <div class="question" hidden>
+          <div class="question__answers">
+            <button class="question__answer" data-value="bag">bag</button>
+            <button class="question__answer" data-value="beg">beg</button>
+          </div>
+          <button class="question__audio">Listen</button>
+        </div>
+        <!--  -->
+        <button class="question__next" hidden>Next</button>
+        <dialog>
+          <div class="dialog__content">
+            <h2>END</h2>
+            <button class="dialog__reload">Play again</button>
+          </div>
+        </dialog>
+      </div>
+    </main>
+  </body>
+</html>
