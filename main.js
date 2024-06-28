@@ -11,7 +11,13 @@ function getQuizWords() {
 
 const words = getQuizWords();
 
-const correctWords = words.map((arr) => arr[0]);
+const correctWords = words.map((arr) => {
+  const randomIndex = Math.floor(Math.random() * arr.length);
+  const randomWord = arr[randomIndex];
+  return randomWord;
+});
+
+console.log(words, correctWords);
 
 function getAudioUrl(word) {
   return `https://api.dictionaryapi.dev/media/pronunciations/en/${word}-us.mp3`;
