@@ -17,8 +17,6 @@ const correctWords = words.map((arr) => {
   return randomWord;
 });
 
-console.log(words, correctWords);
-
 function getAudioUrl(word) {
   return `https://api.dictionaryapi.dev/media/pronunciations/en/${word}-us.mp3`;
 }
@@ -30,7 +28,6 @@ class Info {
   }
 
   updateOrder(order) {
-    console.log(order);
     this.$el.querySelector(".quiz__order").textContent = `${order}/5`;
   }
 }
@@ -82,6 +79,9 @@ class Question {
     // emit
     const myEvent = new CustomEvent("answer:check", {
       bubbles: true,
+      detail: {
+        success: this.word === value,
+      },
     });
     this.$el.dispatchEvent(myEvent);
 
@@ -135,6 +135,7 @@ class Quiz {
   constructor(id) {
     this.id = id;
     this.index = 0;
+    this.score = 0;
     this.$el = document.getElementById(id);
     this.info = this.initInfo();
     this.questions = this.initQuestions();
@@ -188,10 +189,15 @@ class Quiz {
   }
 
   addListener() {
-    this.$el.addEventListener("answer:check", () => {
+    this.$el.addEventListener("answer:check", (e) => {
+      if (e.detail.success) {
+        this.score++;
+      }
+
       if (this.index === this.questions.length - 1) {
         this.next.$el.textContent = "Score";
       }
+
       this.next.show();
     });
 
@@ -201,6 +207,9 @@ class Quiz {
         this.playAudioOnQuestionStart();
         this.info.updateOrder(this.index + 1);
       } else {
+        this.$dialogEnd.querySelector(
+          ".dialog__score"
+        ).textContent = `Score: ${this.score}/${correctWords.length}`;
         this.$dialogEnd.showModal();
       }
     });
