@@ -177,6 +177,10 @@ class Quiz {
     }
   }
 
+  playAudioOnQuestionStart() {
+    this.questions[this.index].audio.play();
+  }
+
   addListener() {
     this.$el.addEventListener("answer:check", () => {
       if (this.index === this.questions.length - 1) {
@@ -188,6 +192,7 @@ class Quiz {
     this.$el.addEventListener("question:next", () => {
       if (this.index !== this.questions.length - 1) {
         this.moveIndex("forward");
+        this.playAudioOnQuestionStart();
         this.info.updateOrder(this.index + 1);
       } else {
         this.$dialogEnd.showModal();
@@ -207,6 +212,7 @@ class Quiz {
       .querySelector(".dialog__play")
       .addEventListener("click", () => {
         this.$dialogBegin.close();
+        this.playAudioOnQuestionStart();
       });
   }
 }
