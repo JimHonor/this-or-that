@@ -133,8 +133,14 @@ class Quiz {
     this.info = this.initInfo();
     this.questions = this.initQuestions();
     this.next = this.initNext();
-    this.$dialog = document.querySelector("dialog");
+    this.$dialogEnd = document.querySelector(".dialog__end");
+    this.$dialogBegin = document.querySelector(".dialog__begin");
+    this.init();
     this.addListener();
+  }
+
+  init() {
+    this.$dialogBegin.showModal();
   }
 
   initInfo() {
@@ -184,11 +190,11 @@ class Quiz {
         this.moveIndex("forward");
         this.info.updateOrder(this.index + 1);
       } else {
-        this.$dialog.showModal();
+        this.$dialogEnd.showModal();
       }
     });
 
-    const $reload = this.$dialog.querySelector(".dialog__reload");
+    const $reload = this.$dialogEnd.querySelector(".dialog__reload");
     if (!$reload) {
       throw new Error("Opps, please check your selector!");
     } else {
@@ -196,6 +202,12 @@ class Quiz {
         window.location.reload();
       });
     }
+
+    this.$dialogBegin
+      .querySelector(".dialog__play")
+      .addEventListener("click", () => {
+        this.$dialogBegin.close();
+      });
   }
 }
 
